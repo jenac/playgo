@@ -7,24 +7,24 @@ sudo apt install golang
 
 ## Set Environment Variables
 ```
-mkdir ~/go
-export GOPATH=/home/lihe/go
+mkdir ~/Projects/go
+export GOPATH=/home/lihe/Projects/go
 export PATH=$PATH:$GOPATH/bin
 ```
 
 ## Folder Structure
 ```
-mkdir -p ~/go
-mkdir -p ~/go/src
-mkdir -p ~/go/pkg
-mkdir -p ~/go/bin
+mkdir -p ~/Projects/go
+mkdir -p ~/Projects/go/src
+mkdir -p ~/Projects/go/pkg
+mkdir -p ~/Projects/go/bin
 ```
 
 ## Put your source repo
 for example, https://github.com/jenac/playgo.git
 ```
-mkdir -p ~/go/src/github.com/jenac
-cd ~/go/src/github.com/jenac
+mkdir -p ~/Projects/go/src/github.com/jenac
+cd ~/Projects/go/src/github.com/jenac
 git clone https://github.com/jenac/playgo.git
 cd playgo
 ```
