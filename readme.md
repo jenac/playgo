@@ -8,6 +8,9 @@ sudo apt install golang
 ## Set Environment Variables
 ```
 mkdir ~/Projects/go
+```
+set env variables in `~/.zshrc`
+```
 export GOPATH=/home/lihe/Projects/go
 export PATH=$PATH:$GOPATH/bin
 ```
