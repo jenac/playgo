@@ -8,7 +8,7 @@ import "os"
 import "strconv"
 
 var infile *string = flag.String("i", "unsorted.dat", "File contains values for sorting")
-var outfile *string = flag.String("o", "sorted", "File to receive sorted values")
+var outfile *string = flag.String("o", "sorted.dat", "File to receive sorted values")
 var algorithm *string = flag.String("a", "qsort", "Sort algorithm")
 
 func readValues(infile string)(values []int, err error)  {
@@ -49,6 +49,22 @@ func readValues(infile string)(values []int, err error)  {
 	return
 }
 
+func writeValues(values []int, outfile string) error {
+	file, err := os.Create(outfile)	
+	if err != nil {
+		fmt.Println("Failed to create the output file", outfile)
+		return err
+	}
+
+	defer file.Close()
+
+	for _, value := range values {
+		str := strconv.Itoa(value)
+		file.WriteString(str + "\n")
+	}
+	return nil
+}
+
 func main()  {
 	flag.Parse()
 
@@ -60,5 +76,9 @@ func main()  {
 		fmt.Println(err)
 	} else {
 		fmt.Println("Read values:", values)	
+		err := writeValues(values, *outfile)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }
