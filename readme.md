@@ -4,34 +4,19 @@
 ```
 sudo apt install golang
 ```
+## Clone repo and go to work foler
 
 ## Set Environment Variables
 ```
-mkdir ~/Projects/go
-```
-set env variables in `~/.zshrc`
-```
-export GOPATH=/home/lihe/Projects/go
-export PATH=$PATH:$GOPATH/bin
+ export GOPATH=$(pwd)
+ echo $GOPATH
 ```
 
-## Folder Structure
+## Run sorter.go
 ```
-mkdir -p ~/Projects/go
-mkdir -p ~/Projects/go/src
-mkdir -p ~/Projects/go/pkg
-mkdir -p ~/Projects/go/bin
+cd src/app
+go run sorter.go
 ```
-
-## Put your source repo
-for example, https://github.com/jenac/playgo.git
-```
-mkdir -p ~/Projects/go/src/github.com/jenac
-cd ~/Projects/go/src/github.com/jenac
-git clone https://github.com/jenac/playgo.git
-cd playgo
-```
-work in `playgo` folder
 
 ## Install All Project Dependencies
 ```
@@ -43,4 +28,6 @@ go get ./...
 go get <package name>
 go build
 go install
+go run [somefile].go
 ```
+

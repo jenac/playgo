@@ -6,7 +6,7 @@ import "fmt"
 import "io"
 import "os"
 import "strconv"
-
+import "algorithms/bubblesort"
 var infile *string = flag.String("i", "unsorted.dat", "File contains values for sorting")
 var outfile *string = flag.String("o", "sorted.dat", "File to receive sorted values")
 var algorithm *string = flag.String("a", "qsort", "Sort algorithm")
@@ -76,6 +76,7 @@ func main()  {
 		fmt.Println(err)
 	} else {
 		fmt.Println("Read values:", values)	
+		bubblesort.BubbleSort(values)
 		err := writeValues(values, *outfile)
 		if err != nil {
 			fmt.Println(err)
