@@ -15,7 +15,15 @@ echo $GOPATH
 ## Run sorter.go
 ```
 cd src/app
+go test algorithms/qsort
+go test algorithms/bubblesort
 go run sorter.go
+```
+
+## Run molayer.go
+```
+cd src/app
+go test library
 ```
 
 ## Install All Project Dependencies
