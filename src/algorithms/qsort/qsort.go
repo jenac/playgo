@@ -18,9 +18,9 @@ func quickSort(values []int, left, right int)  {
 			i++
 		}
 
-		if j <= p {
+		if i <= p {
 			values[p] = values[i]
-			p - i
+			p = i
 		}
 	}
 

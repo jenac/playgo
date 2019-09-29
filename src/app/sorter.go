@@ -6,7 +6,9 @@ import "fmt"
 import "io"
 import "os"
 import "strconv"
+import "time"
 import "algorithms/bubblesort"
+import "algorithms/qsort"
 var infile *string = flag.String("i", "unsorted.dat", "File contains values for sorting")
 var outfile *string = flag.String("o", "sorted.dat", "File to receive sorted values")
 var algorithm *string = flag.String("a", "qsort", "Sort algorithm")
@@ -72,14 +74,20 @@ func main()  {
 		fmt.Println("infile=", *infile, "outfile=", *outfile, "algorithm=", *algorithm)
 	}
 	values, err := readValues(*infile)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println("Read values:", values)	
-		bubblesort.BubbleSort(values)
-		err := writeValues(values, *outfile)
-		if err != nil {
-			fmt.Println(err)
+	if err == nil {
+		t1 := time.Now()
+		switch *algorithm {
+		case "qsort":
+			qsort.QuickSort(values)
+		case "bubblesort":
+			bubblesort.BubbleSort(values)
+		default:
+			fmt.Println("Sorting algorithm", *algorithm, "is not supported")
 		}
+		t2 := time.Now()
+		fmt.Println("The sorting process costs", t2.Sub(t1), "to complete.")
+		writeValues(values, *outfile)
+	} else {
+		fmt.Println(err)
 	}
 }
