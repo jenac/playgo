@@ -8,8 +8,8 @@ sudo apt install golang
 
 ## Set Environment Variables
 ```
- export GOPATH=$(pwd)
- echo $GOPATH
+export GOPATH=$(pwd)
+echo $GOPATH
 ```
 
 ## Run sorter.go
