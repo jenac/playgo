@@ -8,9 +8,10 @@ import (
 	"strings"
 
 	"mp"
+	"library"
 )
 
-var lib *MusciManager
+var lib *library.MusicManager
 var id int = 1
 var ctrl, signal chan int
 
@@ -25,7 +26,7 @@ func handleLibCommands(tokens []string) {
 		case "add": {
 			if len(tokens) == 6 {
 				id++
-				lib.Add( &MusicEntry { strconv.Itoa(id), tokens[2], tokens[3], tokens[4], tokens[5] } )
+				lib.Add( &library.MusicEntry { strconv.Itoa(id), tokens[2], tokens[3], tokens[4], tokens[5] } )
 			} else {
 				fmt.Println("USAGE: lib add <name><artist><source><type>")
 			}
@@ -42,7 +43,7 @@ func handleLibCommands(tokens []string) {
 }
 
 func handlePlayCommand(tokens []string) {
-	if len(tokens != 2) {
+	if len(tokens) != 2 {
 		fmt.Println("USAGE: play <name>")
 		return
 	}
@@ -53,7 +54,7 @@ func handlePlayCommand(tokens []string) {
 		return
 	}
 
-	mp.Play(e.Source, e.Type, ctrl, signal)
+	mp.Play(e.Source, e.Type)
 }
 
 func main() {
@@ -65,7 +66,7 @@ func main() {
 		play <name> -- Play the specified music
 	`)
 
-	lib = NewMusicManager()
+	lib = library.NewMusicManager()
 	
 	r := bufio.NewReader(os.Stdin)
 
@@ -83,9 +84,10 @@ func main() {
 
 		if tokens[0] == "lib" {
 			handleLibCommands(tokens)
-		} elseif tokens[0] == "play" {
+		} else if tokens[0] == "play" {
 			handlePlayCommand(tokens) 
 		} else {
 			fmt.Println("Unkown command", tokens[0])
 		}
+	}
 }

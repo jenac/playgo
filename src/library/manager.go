@@ -54,12 +54,25 @@ func (m *MusicManager) Remove(index int) *MusicEntry {
 	removedMusic := &m.musics[index]
 
 	if index < len(m.musics) -1 {
-		m.musics = append(m.musics[:index-1], m.musics[index+1:]...)
+		m.musics = append(m.musics[:index], m.musics[index+1:]...)
 	} else if index == 0 {
 		m.musics = make([]MusicEntry, 0)
 	} else {
-		m.musics = m.musics[:index-1]
+		m.musics = m.musics[:index]
 	}
 
 	return removedMusic
+}
+
+func (m *MusicManager) RemoveByName(name string) *MusicEntry {
+	if len(m.musics) == 0 {
+		return nil
+	}
+
+	for index, iter := range m.musics {
+		if iter.Name == name {
+			return m.Remove(index)
+		}
+	}
+	return nil
 }
